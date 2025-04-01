@@ -7,7 +7,7 @@ int main() {
     constexpr Point bottom = {60.0, 0.0};
     constexpr Point top = {0.0, 40.0};
 
-    constexpr double dt = 0.1;
+    constexpr double dt = 0.01;
 
     InclinedPlane sphere_k(bottom, top, I_K, dt);
     sphere_k.run(0.0, 0.0, "../data/ball.csv", "../data/c_ball.csv");

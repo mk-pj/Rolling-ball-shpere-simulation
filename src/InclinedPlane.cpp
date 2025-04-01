@@ -89,6 +89,7 @@ void InclinedPlane::run(const double v0, const double omega0, const char *file_n
              << s << "," << beta << "," << v << "," << omega << "," <<
                  ek << "," << ep << "," << ec <<"\n";
 
+        std::cout << beta << '\n';
         euler_mid(&s, &v, this->a);
         euler_mid(&beta, &omega, this->epsilon);
 

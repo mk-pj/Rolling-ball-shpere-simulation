@@ -37,7 +37,7 @@ using std::sin, std::cos;
     public:
         InclinedPlane(Point, Point, double=I_K, double=0.01);
         void run(double, double, const char*, const char*);
-        friend void save_parameters(const InclinedPlane &ip, const char*);
+        friend void save_parameters(const InclinedPlane&, const char*);
         ~InclinedPlane();
     };
 

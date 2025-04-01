@@ -20,6 +20,7 @@ def plot_energy(csv_path, output_path, title="Energia w czasie"):
     plt.savefig(output_path)
     plt.close()
     print(f"Zapisano wykres do: {output_path}")
+
 def main():
     plot_energy("data/ball.csv", "energy_ball.png", "Energia – kula")
     plot_energy("data/sphere.csv", "energy_sphere.png", "Energia – sfera")
