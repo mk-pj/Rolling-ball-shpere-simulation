@@ -101,13 +101,14 @@ void InclinedPlane::run(const double v0, const double omega0, const char *file_n
         ep = this->potential_energy();
         ec = ek + ep;
 
+        t += dt;
+
         for (int i = 0; i < circle_point_count; ++i) {
             double x = r * cos(radians[i]) + this->center->x;
             double y = r * sin(radians[i]) + this->center->y;
             circle_file << t << "," << x << "," << y << '\n';
         }
 
-        t += dt;
     }
     delete[] radians;
     file.close();
