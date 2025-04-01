@@ -95,7 +95,7 @@ void InclinedPlane::run(const double v0, const double omega0, const char *file_n
         update_center_point(s);
         update_tracked_point(beta);
 
-        ek = this->kinetic_energy(v0, omega);
+        ek = this->kinetic_energy(v, omega);
         ep = this->potential_energy();
         ec = ek + ep;
 
