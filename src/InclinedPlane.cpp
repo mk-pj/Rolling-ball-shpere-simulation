@@ -11,7 +11,6 @@ InclinedPlane::InclinedPlane(
 ) : bottom(bottom), top(top), I(I), dt(dt) {
     const double slope = (top.y - bottom.y) / (bottom.x - top.x);
     this->inclination_angle = atan(slope);
-    std::cout << this->inclination_angle << std::endl;
 
     this->sin_alpha = sin(-this->inclination_angle);
     this->cos_alpha = cos(-this->inclination_angle);
@@ -71,9 +70,12 @@ void InclinedPlane::run(const double v0, const double omega0, const char *file_n
     std::fstream circle_file(circle_file_name, std::ios::out | std::ios::trunc);
     circle_file << "t,x,y\n";
 
-    auto radians = new double[61];
-    for (int i = 0; i < 61; i++) {
-        radians[i] = 6 * i * M_PI / 180;
+    int circle_point_count = 61;
+    double circle_param = 360.0 / (circle_point_count-1);
+    auto radians = new double[circle_point_count];
+
+    for (int i = 0; i < circle_point_count; i++) {
+        radians[i] = circle_param * i * M_PI / 180;
         double x = r * cos(radians[i]) + this->center->x;
         double y = r * sin(radians[i]) + this->center->y;
         circle_file << t << "," << x << "," << y << '\n';
@@ -89,7 +91,6 @@ void InclinedPlane::run(const double v0, const double omega0, const char *file_n
              << s << "," << beta << "," << v << "," << omega << "," <<
                  ek << "," << ep << "," << ec <<"\n";
 
-        std::cout << beta << '\n';
         euler_mid(&s, &v, this->a);
         euler_mid(&beta, &omega, this->epsilon);
 
@@ -100,7 +101,7 @@ void InclinedPlane::run(const double v0, const double omega0, const char *file_n
         ep = this->potential_energy();
         ec = ek + ep;
 
-        for (int i = 0; i < 61; ++i) {
+        for (int i = 0; i < circle_point_count; ++i) {
             double x = r * cos(radians[i]) + this->center->x;
             double y = r * sin(radians[i]) + this->center->y;
             circle_file << t << "," << x << "," << y << '\n';
